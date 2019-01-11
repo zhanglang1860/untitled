@@ -1,6 +1,6 @@
 import sys
 from PyQt5 import QtWidgets
-from untitled import Ui_Form
+from test.untitled import Ui_Form
 
 class MyPyQT_Form(QtWidgets.QWidget,Ui_Form):
     def __init__(self):
