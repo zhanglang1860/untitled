@@ -35,6 +35,6 @@ def read_docx(path):
     # paragraph1.space_after = Pt(10)  # 段前间距
     # paragraph1.paragraph_format.line_spacing = Pt(32)  # 段内间距
 
-    data.save(r'C:\Users\Administrator\PycharmProjects\untitled\files\test03.docx')
+    data.save(r'C:\Users\Administrator\PycharmProjects\untitled\files\testA_02.docx')
 if __name__ == "__main__":
-    read_docx(r'C:\Users\Administrator\PycharmProjects\untitled\files\test03.docx')
+    read_docx(r'C:\Users\Administrator\PycharmProjects\untitled\files\testA_02.docx')
