@@ -16,36 +16,13 @@ rawdata = pd.read_csv(r'C:\Users\Administrator\PycharmProjects\untitled\files\53
                                          '最大风速的风向','极大风速','极大风速的风向',
                                          'other1','other2','other3','other4','other5'])
 
-split_rawdata=np.hsplit(rawdata, (4,12))
-Data=split_rawdata[1]
-print(Data.shape)
-aa=np.array(Data)
-print(aa[1])
-# Date_array=hsplit_np[1]
-# wind_avg_array=hsplit_np[2]/10
-# wind_max_array=hsplit_np[3]/10
-# wind_maxdeg_array=hsplit_np[4]
-# wind_extrame_array=hsplit_np[5]/10
-# wind_extramedeg_array=hsplit_np[6]
+longdate_np=np.array(rawdata)
+print(longdate_np.shape)
+hsplit_np=np.hsplit(longdate_np, (4,7))
 
-# for i in range(Data.shape[0]):
-#     print(Data[i][0])
-    # dates = pd.to_datetime(sstr, format='%Y %m %d', errors='ignore') #将数据类型转换为日期类型
-    # print(sstr)
-# # df = Dates.set_index('date') # 将date设置为index
-# # print(df.head(2))
-# # print(df.tail(2))
-# # print(df.shape)
-# new_Dates=np.array(Dates)
-# print(new_Dates.shape)
-# for i in range(rawdata.shape[0]):
-#     dates = re.sub('[\[\]]', '', np.array_str(Date_array[i]))
-#     date_num = datetime.datetime.strptime(dates, '%Y %m %d').timestamp()
-#     Dates.append(dateparse)
-# print(Dates)
-# modify_rawdata=np.hstack((new_Dates,wind_avg_array,wind_max_array,wind_maxdeg_array,wind_extrame_array,wind_extramedeg_array))
+test=re.sub('[\[\]]', '', np.array_str(hsplit_np[1][0]))
 
-
+print(test)
 
 # date_number = datetime.datetime.strptime(str(hsplit_np[1][0]&'-'&hsplit_np[2][0]&'-'&hsplit_np[3][0])
 #                                          ,'%Y-%m-%d').timestamp()
