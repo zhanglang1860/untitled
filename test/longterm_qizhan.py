@@ -10,95 +10,19 @@ hsplit_np=[]
 dateparse = lambda dates: pd.datetime.strptime(dates,'%d/%m/%Y %H:%M')
 #将时间栏合并,并转为标准时间格式
 # rawdata = pd.read_csv('53787 气站数据.csv',parse_dates={'timeline':['date','(UTC)']},date_parser=dateparse)
-df = pd.read_csv(r'C:\Users\Administrator\PycharmProjects\untitled\files\53787.csv',
-                      header=None)
-
-df.columns = ['区站号','纬度','经度','观测场海拔高度',
-                                         'year','月','日','平均风速','最大风速',
+rawdata = pd.read_csv(r'C:\Users\Administrator\PycharmProjects\untitled\files\53787.csv',
+                      header=None,names=['区站号','纬度','经度','观测场海拔高度',
+                                         '年','月','日','平均风速','最大风速',
                                          '最大风速的风向','极大风速','极大风速的风向',
-                                         'other1','other2','other3','other4','other5']
+                                         'other1','other2','other3','other4','other5'])
 
-index=df.index
-df = df.set_index('year') # 将date设置为index
-s = pd.Series(df['平均风速'], index=df.index)
-s.head(2)
-print('---------获取2013年的数据-----------')
-print(df[df["year"]>2000]) # 获取2013年的数据
+longdate_np=np.array(rawdata)
+print(longdate_np.shape)
+hsplit_np=np.hsplit(longdate_np, (4,7))
 
+test=re.sub('[\[\]]', '', np.array_str(hsplit_np[1][0]))
 
-
-npdtype = [('year', int), ('month', int),('day', int),('wind_speed', float), ('wind_speed_max', float),
-           ('wind_speed_max_deg', float),('wind_speed_extrame', float), ('wind_speed_extrame_deg', float)]
-
-hsplit_np=np.hsplit(df,(4,12))
-Data_np=np.dtype(npdtype)
-Data_np=np.array(hsplit_np[1])
-# print(Data_np.shape,rawdata['平均风速'])
-# npdtype = [('year', int), ('month', int),('day', int),('wind_speed', float), ('wind_speed_max', float),
-#            ('wind_speed_max_deg', float),('wind_speed_extrame', float), ('wind_speed_extrame_deg', float)]
-# Data_array = np.array(Data_np[0], dtype=npdtype)
-# print(Data_array.size,Data_array)
-
-
-# Data_array = Data_array.set_index('year')
-#
-# print(Data_array.head(2))
-# print(Data_array.tail(2))
-
-
-# Merge_dt64=[]
-# Data_Date_np=[]
-#
-# npdtype = [('date', 'datetime64[ns]'), ('wind_speed', float), ('wind_speed_max', float),('wind_speed_max_deg', float),
-#                             ('wind_speed_extrame', float), ('wind_speed_extrame_deg', float)]
-#
-# for i in range(date_np.shape[0]):
-# #     # date_str=""
-# #     # date_str=str(date_np[i][0])+"/"+str(date_np[i][1])+"/"+str(date_np[i][2])
-#     dt = datetime.datetime(date_np[i][0], date_np[i][1], date_np[i][2])
-#     dt64 = np.datetime64(dt)
-#     # wind_speed=hsplit_np[2]/10
-#     # wind_speed_max=hsplit_np[3]/10
-#     # wind_speed_max_deg=hsplit_np[4]
-#     # wind_speed_extrame = hsplit_np[5]/10
-#     # wind_speed_extrame_deg = hsplit_np[6]
-#     # date=str(pd.to_datetime(date_str))
-# #     # times=datetime.datetime.strptime(date_str, '%Y/%m/%d').timestamp()
-#
-#     # Merge_dt64.append([dt64],wind_speed,wind_speed_max,wind_speed_max_deg,wind_speed_extrame,wind_speed_extrame_deg)
-#     Merge_dt64.append([dt64])
-# Data_Date_np=np.array(Merge_dt64)
-#
-#
-# # Data_np=np.hstack((Data_Date_np,hsplit_np[2]))
-# # print(Data_np.shape,Data_np)
-#
-#
-# npdtype = [('year', int), ('month', int),('day', int),('wind_speed', float), ('wind_speed_max', float),
-#            ('wind_speed_max_deg', float),('wind_speed_extrame', float), ('wind_speed_extrame_deg', float)]
-# np_array = np.empty((0,6), dtype=npdtype)
-# #
-# for i in range(date_np.shape[0]):
-#     data=Data_Date_np[i]+" "+hsplit_np[2,i]
-#     Data=data.append(data)
-# tmp = np.array(Data, dtype=npdtype)
-# # np_array=np.append(np_array, tmp)
-# # print(np_array.shape,np_array)
-# #
-
-
-
-
-
-
-# print(hsplit_np[2].shape,hsplit_np[2])
-
-# Modify_data=np.hstack((hsplit_np[2],hsplit_np[3]))
-# print(Modify_data.shape,Modify_data)
-
-# test=re.sub('[\[\]]', '', np.array_str(hsplit_np[1][0]))
-#
-# print(test)
+print(test)
 
 # date_number = datetime.datetime.strptime(str(hsplit_np[1][0]&'-'&hsplit_np[2][0]&'-'&hsplit_np[3][0])
 #                                          ,'%Y-%m-%d').timestamp()
