@@ -25,6 +25,9 @@ def read_excel():
     # sheet的名称，行数，列数
     print(sheet2.name, sheet2.nrows, sheet2.ncols)
     context = {'number_of_tower': number_of_tower}
+
+
+
     tpl.render(context)
     tpl.save(r'C:\Users\Administrator\PycharmProjects\untitled\files\result.docx')
 
